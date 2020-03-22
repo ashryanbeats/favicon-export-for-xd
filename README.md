@@ -12,6 +12,7 @@
 
 1. User can see what favicon sizes will be exported
 1. All known favicon sizes are exported to a user-selected location
+1. User gets a top-level folder to contain all the renditions
 1. User gets a success or error message on export
 1. User can select/deselect sizes to export
 
