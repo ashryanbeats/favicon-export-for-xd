@@ -1,8 +1,9 @@
-# Getting started
+# Favicon Export for XD
 
-This sample plugin is a persistent panel. Users can increase the width and height of the selected rectangle by inputing pixel values in the panel.
-[Read the step-by-step guide for this sample](https://adobexdplatform.com/plugin-docs/tutorials/quick-start-panel/).
+## Todos
 
-## Usage
-
-1. Run "Plugins > Enlarge a Rectangle"
+1. User gets an error message if selection isn't a square
+1. User gets an error messge if selection isn't an acceptable type
+1. All know favicon sizes are exported to a user-selected location
+1. User can copy favicon markup to clipboard
+1. User can customize favicon markup with a custom path
