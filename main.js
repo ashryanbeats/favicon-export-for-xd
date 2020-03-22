@@ -1,7 +1,8 @@
-const { selection } = require("scenegraph");
+const { isValidSelection } = require("./validate");
+const { exportRenditions } = require("./export");
 let panel;
 
-function create() {
+function createUI() {
   const HTML = `<style>
             .break {
                 flex-wrap: wrap;
@@ -37,40 +38,20 @@ function create() {
         </form>
         <p id="warning">This plugin requires you to select a rectangle in the document. Please select a rectangle.</p>
         `;
-  function increaseRectangleSize() {
-    const { editDocument } = require("application");
-    const height = Number(document.querySelector("#txtV").value);
-    const width = Number(document.querySelector("#txtH").value);
-
-    editDocument({ editLabel: "Increase rectangle size" }, function(selection) {
-      const selectedRectangle = selection.items[0];
-      selectedRectangle.width += width;
-      selectedRectangle.height += height;
-    });
-  }
 
   panel = document.createElement("div");
   panel.innerHTML = HTML;
-  panel.querySelector("form").addEventListener("submit", increaseRectangleSize);
+  //panel.querySelector("form").addEventListener("submit", increaseRectangleSize);
 
   return panel;
 }
 
 function show(event) {
-  if (!panel) event.node.appendChild(create());
+  if (!panel) event.node.appendChild(createUI());
 }
 
 function update() {
-  const { Rectangle } = require("scenegraph");
-  let form = document.querySelector("form");
-  let warning = document.querySelector("#warning");
-  if (!selection || !(selection.items[0] instanceof Rectangle)) {
-    form.className = "hide";
-    warning.className = "show";
-  } else {
-    form.className = "show";
-    warning.className = "hide";
-  }
+  if (!isValidSelection()) return;
 }
 
 module.exports = {
