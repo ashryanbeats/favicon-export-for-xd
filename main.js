@@ -1,24 +1,12 @@
-const { isValidSelection } = require("./validate");
-const { getMarkup } = require("./markup");
-const { exportRenditions } = require("./export");
-let panel;
-
-function createUI() {
-  const markup = getMarkup();
-
-  panel = document.createElement("div");
-  panel.innerHTML = markup;
-  panel.querySelector("form").addEventListener("submit", exportRenditions);
-
-  return panel;
-}
+const { attachUI } = require("./ui");
+const { validateSelection } = require("./validate");
 
 function show(event) {
-  if (!panel) event.node.appendChild(createUI());
+  return attachUI(event);
 }
 
 function update() {
-  if (!isValidSelection()) return;
+  return validateSelection();
 }
 
 module.exports = {

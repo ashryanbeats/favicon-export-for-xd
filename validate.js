@@ -1,5 +1,16 @@
 const { selection, Rectangle, Artboard } = require("scenegraph");
 
+const validateSelection = () => {
+  const panel = document.querySelector("#panel");
+  const okButton = panel.querySelector("#ok");
+
+  if (!isValidSelection()) {
+    okButton.setAttribute("disabled", "");
+  } else {
+    okButton.removeAttribute("disabled");
+  }
+};
+
 const isValidSelection = () => {
   const warningEl = document.querySelector("#warning");
   resetWarning(warningEl);
@@ -52,4 +63,4 @@ const isSquare = item => {
   return item.width === item.height;
 };
 
-module.exports = { isValidSelection };
+module.exports = { validateSelection };
