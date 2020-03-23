@@ -7,14 +7,16 @@ const selectedItem = selection.items[0];
 const renditionSizes = [32, 128, 152, 167, 180, 192, 196];
 
 const exportRenditions = async () => {
-  const destDir = await getDestDir();
+  const selectedDir = await fs.getFolder();
+  const destDir = await getDestDir(selectedDir);
   const renditions = await getRenditionOpts(destDir);
   const messageEl = document.querySelector("#message");
 
   try {
-    const result = await application.createRenditions(renditions);
+    await application.createRenditions(renditions);
+
     showMessage(messageEl, {
-      message: msg.opInfo.success,
+      message: `${msg.opInfo.success} "${selectedDir.name}/${destDir.name}"`,
       styleClass: styleClass.info,
       withTimeout: true
     });
@@ -28,9 +30,8 @@ const exportRenditions = async () => {
   }
 };
 
-const getDestDir = async () => {
+const getDestDir = async selectedDir => {
   const destDirSlug = "Favicons";
-  const selectedDir = await fs.getFolder();
 
   const entries = await selectedDir.getEntries();
   const faviconDirs = entries

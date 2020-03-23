@@ -4,7 +4,7 @@ const msg = {
     selDim: "Please select a square rectangle or artboard."
   },
   opInfo: {
-    success: "Favicons exported.",
+    success: "Favicons saved in",
     error: "An error occurred. Please try again."
   }
 };
@@ -23,8 +23,14 @@ const resetMessage = element => {
 const showMessage = (element, options) => {
   element.textContent = options.message;
   element.className = `show ${options.styleClass}`;
-  // options.withTimeout
+  if (options.withTimeout) initTimeout(element);
   return false;
+};
+
+const initTimeout = element => {
+  setTimeout(() => {
+    resetMessage(element);
+  }, 2000);
 };
 
 module.exports = {

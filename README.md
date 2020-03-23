@@ -19,7 +19,8 @@
 1. ~All known favicon sizes are exported to a user-selected location~
 1. ~User gets a top-level folder to contain all the renditions~
 1. ~User gets a success or error message on export~
-1. User can escape from file picker flow without plugin errors
+1. ~User can escape from file picker flow without plugin errors~
+1. User doesn't need to dismiss success and error messages
 1. ? User can select/deselect sizes to export
 
 ### Markup Export
