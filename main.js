@@ -1,5 +1,5 @@
 const { attachUI } = require("./ui");
-const { validateSelection } = require("./validate");
+const { validateSelection } = require("./ui/validate");
 
 function show(event) {
   return attachUI(event);

@@ -5,7 +5,7 @@
 ### Design
 
 1. ~User experiences consistent UI colors throughout~
-1. User can recognize the plugin by its icon
+1. ~User can recognize the plugin by its icon~
 
 ### Validation
 

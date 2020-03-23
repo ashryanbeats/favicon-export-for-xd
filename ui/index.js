@@ -1,5 +1,6 @@
 const { getMarkup } = require("./markup");
-const { exportRenditions, renditionSizes } = require("./export");
+const { handleExports } = require("../export");
+const { renditionSizes } = require("../export/renditions");
 
 let panel;
 
@@ -12,7 +13,7 @@ const attachUI = event => {
   panel.innerHTML = markup;
 
   attachSizeList();
-  panel.querySelector("form").addEventListener("submit", exportRenditions);
+  panel.querySelector("form").addEventListener("submit", handleExports);
 
   event.node.appendChild(panel);
   return panel;

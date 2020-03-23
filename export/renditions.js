@@ -1,7 +1,7 @@
 const { selection } = require("scenegraph");
 const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
-const { msg, styleClass, showMessage } = require("./message");
+const { msg, styleClass, showMessage } = require("../ui/message");
 
 const selectedItem = selection.items[0];
 const renditionSizes = [32, 128, 152, 167, 180, 192, 196];
