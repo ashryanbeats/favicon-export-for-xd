@@ -22,6 +22,15 @@ const markup = `
   .hide {
     display: none;
   }
+  .warning {
+    background: yellow;
+  }
+  .info {
+    background: blue;
+  }
+  .error {
+    background: red;
+  }
   .size-item {
     padding-left: 10px;
     padding-top: 5px;
@@ -32,9 +41,11 @@ const markup = `
     <h2>Export sizes</h2>
     <div id="size-list"></div>
   </div>
-  <footer><button id="ok" type="submit" uxp-variant="cta">Export Favicons</button></footer>
+  <footer>
+    <button id="ok" type="submit" uxp-variant="cta">Export Favicons</button>
+  </footer>
 </form>
-<p id="warning"></p>
+<div id="message"></div>
 `;
 
 module.exports = {

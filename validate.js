@@ -1,4 +1,5 @@
 const { selection, Rectangle, Artboard } = require("scenegraph");
+const { msg, styleClass, showMessage, resetMessage } = require("./message");
 
 const validateSelection = () => {
   const panel = document.querySelector("#panel");
@@ -12,38 +13,33 @@ const validateSelection = () => {
 };
 
 const isValidSelection = () => {
-  const warningEl = document.querySelector("#warning");
-  resetWarning(warningEl);
+  const messageEl = document.querySelector("#message");
+  resetMessage(messageEl);
 
   // selection exists?
-  if (!selectionExists()) return showWarning(warningEl, validationMsg.selType);
+  if (!selectionExists())
+    return showMessage(messageEl, {
+      message: msg.validate.selType,
+      styleClass: styleClass.warning
+    });
 
   const item = selection.items[0];
 
   // is correct type?
   if (!isCorrectType(item))
-    return showWarning(warningEl, validationMsg.selType);
+    return showMessage(messageEl, {
+      message: msg.validate.selType,
+      styleClass: styleClass.warning
+    });
 
   // is square?
-  if (!isSquare(item)) return showWarning(warningEl, validationMsg.selDim);
+  if (!isSquare(item))
+    return showMessage(messageEl, {
+      message: msg.validate.selDim,
+      styleClass: styleClass.warning
+    });
 
   return true;
-};
-
-const validationMsg = {
-  selType: "Please select a rectangle or artboard.",
-  selDim: "Please select a square rectangle or artboard."
-};
-
-const resetWarning = element => {
-  element.textContent = "";
-  element.className = "hide";
-};
-
-const showWarning = (element, message) => {
-  element.textContent = message;
-  element.className = "show";
-  return false;
 };
 
 const selectionExists = () => {

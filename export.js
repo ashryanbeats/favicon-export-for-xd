@@ -1,6 +1,7 @@
 const { selection } = require("scenegraph");
 const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
+const { msg, styleClass, showMessage } = require("./message");
 
 const selectedItem = selection.items[0];
 const renditionSizes = [32, 128, 152, 167, 180, 192, 196];
@@ -8,13 +9,21 @@ const renditionSizes = [32, 128, 152, 167, 180, 192, 196];
 const exportRenditions = async () => {
   const destDir = await getDestDir();
   const renditions = await getRenditionOpts(destDir);
+  const messageEl = document.querySelector("#message");
 
   try {
     const result = await application.createRenditions(renditions);
-    console.log(result);
-
-    console.log(`PNG rendition saved at ${result[0].outputFile.nativePath}`);
+    showMessage(messageEl, {
+      message: msg.opInfo.success,
+      styleClass: styleClass.info,
+      withTimeout: true
+    });
   } catch (error) {
+    showMessage(messageEl, {
+      message: msg.opInfo.error,
+      styleClass: styleClass.error,
+      withTimeout: true
+    });
     console.log(error);
   }
 };
