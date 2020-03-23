@@ -10,8 +10,9 @@ const msg = {
 };
 
 const styleClass = {
-  warning: "warning",
+  success: "success",
   info: "info",
+  warning: "warning",
   error: "error"
 };
 
@@ -30,7 +31,7 @@ const showMessage = (element, options) => {
 const initTimeout = element => {
   setTimeout(() => {
     resetMessage(element);
-  }, 2000);
+  }, 4000);
 };
 
 module.exports = {

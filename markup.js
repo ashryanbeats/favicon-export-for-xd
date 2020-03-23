@@ -22,14 +22,25 @@ const markup = `
   .hide {
     display: none;
   }
-  .warning {
-    background: yellow;
+  #message {
+    margin: 10px 0px;
+    padding: 12px;
   }
   .info {
-    background: blue;
+    color: #00529B;
+    background-color: #BDE5F8;
+  }
+  .success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+  }
+  .warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
   }
   .error {
-    background: red;
+    color: #D8000C;
+    background-color: #FFD2D2;
   }
   .size-item {
     padding-left: 10px;

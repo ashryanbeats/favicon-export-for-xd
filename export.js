@@ -17,7 +17,7 @@ const exportRenditions = async () => {
 
     showMessage(messageEl, {
       message: `${msg.opInfo.success} "${selectedDir.name}/${destDir.name}"`,
-      styleClass: styleClass.info,
+      styleClass: styleClass.success,
       withTimeout: true
     });
   } catch (error) {

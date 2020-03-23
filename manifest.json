@@ -10,12 +10,12 @@
     {
       "width": 24,
       "height": 24,
-      "path": "images/icon@1x.png"
+      "path": "images/icon-24.png"
     },
     {
       "width": 48,
       "height": 48,
-      "path": "images/icon@2x.png"
+      "path": "images/icon-48.png"
     }
   ],
   "uiEntryPoints": [
