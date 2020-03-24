@@ -48,9 +48,13 @@ const markup = `
     padding-left: 10px;
     padding-top: 5px;
   }
+  .bold {
+    font-weight: bold;
+  }
 </style>
 <form method="dialog">
   <div id="export-info">
+    <p>Favicon Export <span class="bold">exports icons</span> to a folder you choose and <span class="bold">copies HTML tags</span> to your clipboard for use in your code project.</p>
     <h2>Export sizes</h2>
     <div id="size-list"></div>
   </div>
