@@ -6,6 +6,7 @@
 
 1. ~User experiences consistent UI colors throughout~
 1. ~User can recognize the plugin by its icon~
+1. User can see export sizes in a 2-column layout
 
 ### Validation
 
@@ -26,7 +27,9 @@
 
 ### Markup Export
 
-1. User can copy favicon markup to clipboard
+1. ~User can copy favicon markup to clipboard~
+1. User can export favicon markup to file
+1. User can reuse last-used settings without configuration
 1. User can customize favicon markup with a custom path
 
 ### Dev
@@ -34,3 +37,7 @@
 1. UI is free of memory leaks
 1. Error logs can be retrieved from file system
 1. Messages are handled after all operations are complete
+
+### Submission
+
+[Submission checklist](https://adobexdplatform.com/plugin-docs/distribution/submission-checklist.html)

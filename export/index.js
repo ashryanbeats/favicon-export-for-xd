@@ -2,8 +2,9 @@ const { exportRenditions } = require("./renditions");
 const { exportMarkup } = require("./markup");
 
 const handleExports = async () => {
-  await exportRenditions();
-  exportMarkup();
+  const renditionRes = await exportRenditions();
+  const markupRes = exportMarkup();
+  // display result
 };
 
 module.exports = {

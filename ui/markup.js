@@ -1,9 +1,3 @@
-const getMarkup = () => {
-  console.log("getMarkup");
-
-  return markup;
-};
-
 const markup = `
 <style>
   .break {
@@ -66,5 +60,5 @@ const markup = `
 `;
 
 module.exports = {
-  getMarkup
+  markup
 };
