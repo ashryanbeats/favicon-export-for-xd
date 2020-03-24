@@ -5,6 +5,7 @@ const msg = {
   },
   opInfo: {
     success: "Favicons saved in",
+    clipboard: "HTML tags copied to clipboard.",
     error: "An error occurred. Please try again."
   }
 };
@@ -17,6 +18,8 @@ const styleClass = {
 };
 
 const resetMessage = element => {
+  if (element.dataset.timeout === true) return;
+
   element.textContent = "";
   element.className = "hide";
 };
@@ -24,12 +27,16 @@ const resetMessage = element => {
 const showMessage = (element, options) => {
   element.textContent = options.message;
   element.className = `show ${options.styleClass}`;
-  if (options.withTimeout) initTimeout(element);
-  return false;
+
+  if (options.withTimeout) {
+    element.dataset.timeout = true;
+    initTimeout(element);
+  }
 };
 
 const initTimeout = element => {
   setTimeout(() => {
+    element.dataset.timeout = false;
     resetMessage(element);
   }, 4000);
 };

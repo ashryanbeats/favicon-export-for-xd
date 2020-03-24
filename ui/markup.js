@@ -1,4 +1,6 @@
 const getMarkup = () => {
+  console.log("getMarkup");
+
   return markup;
 };
 
@@ -56,7 +58,7 @@ const markup = `
     <button id="ok" type="submit" uxp-variant="cta">Export Favicons</button>
   </footer>
 </form>
-<div id="message"></div>
+<div id="message" data-timeout="false"></div>
 `;
 
 module.exports = {

@@ -21,6 +21,7 @@
 1. ~User gets a success or error message on export~
 1. ~User can escape from file picker flow without plugin errors~
 1. ~User doesn't need to dismiss success and error messages~
+1. User gets apple-touch-icons with an opaque background (if the background is originally transparent)
 1. ? User can select/deselect sizes to export
 
 ### Markup Export
@@ -32,3 +33,4 @@
 
 1. UI is free of memory leaks
 1. Error logs can be retrieved from file system
+1. Messages are handled after all operations are complete

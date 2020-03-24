@@ -1,6 +1,7 @@
 const { getMarkup } = require("./markup");
-const { handleExports } = require("../export");
+const { handleExports } = require("../export/index");
 const { renditionSizes } = require("../export/renditions");
+const application = require("application");
 
 let panel;
 
@@ -13,7 +14,9 @@ const attachUI = event => {
   panel.innerHTML = markup;
 
   attachSizeList();
-  panel.querySelector("form").addEventListener("submit", handleExports);
+  panel
+    .querySelector("form")
+    .addEventListener("submit", () => application.editDocument(handleExports));
 
   event.node.appendChild(panel);
   return panel;
@@ -21,6 +24,8 @@ const attachUI = event => {
 
 const attachSizeList = () => {
   const sizeListDiv = panel.querySelector("#size-list");
+
+  console.log(renditionSizes);
 
   renditionSizes.map(size => {
     const sizeItem = document.createElement("div");

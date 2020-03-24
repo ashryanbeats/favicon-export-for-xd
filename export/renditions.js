@@ -4,7 +4,7 @@ const fs = require("uxp").storage.localFileSystem;
 const { msg, styleClass, showMessage } = require("../ui/message");
 
 const selectedItem = selection.items[0];
-const renditionSizes = [32, 128, 152, 167, 180, 192, 196];
+const renditionSizes = [16, 32, 96, 120, 128, 152, 167, 180, 192, 196];
 
 const exportRenditions = async () => {
   const selectedDir = await fs.getFolder();
@@ -16,7 +16,7 @@ const exportRenditions = async () => {
     await application.createRenditions(renditions);
 
     showMessage(messageEl, {
-      message: `${msg.opInfo.success} "${selectedDir.name}/${destDir.name}"`,
+      message: `${msg.opInfo.success} "${selectedDir.name}/${destDir.name}".`,
       styleClass: styleClass.success,
       withTimeout: true
     });
@@ -26,6 +26,7 @@ const exportRenditions = async () => {
       styleClass: styleClass.error,
       withTimeout: true
     });
+
     console.log(error);
   }
 };
@@ -39,8 +40,6 @@ const getDestDir = async selectedDir => {
     .map(entry => entry.name);
 
   const destDirName = createDestDirName(faviconDirs, destDirSlug);
-  console.log(destDirName);
-
   const destDir = await selectedDir.createFolder(destDirName);
 
   return destDir;
