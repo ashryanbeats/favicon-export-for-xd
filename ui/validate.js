@@ -13,12 +13,11 @@ const validateSelection = () => {
 };
 
 const isValidSelection = () => {
-  const messageEl = document.querySelector("#message");
-  resetMessage(messageEl);
+  resetMessage();
 
   // selection exists?
   if (!selectionExists())
-    return showMessage(messageEl, {
+    return showMessage({
       message: msg.validate.selType,
       styleClass: styleClass.warning
     });
@@ -27,14 +26,14 @@ const isValidSelection = () => {
 
   // is correct type?
   if (!isCorrectType(item))
-    return showMessage(messageEl, {
+    return showMessage({
       message: msg.validate.selType,
       styleClass: styleClass.warning
     });
 
   // is square?
   if (!isSquare(item))
-    return showMessage(messageEl, {
+    return showMessage({
       message: msg.validate.selDim,
       styleClass: styleClass.warning
     });

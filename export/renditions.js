@@ -1,7 +1,7 @@
 const { selection } = require("scenegraph");
 const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
-const { msg, styleClass, showMessage } = require("../ui/message");
+const { msg, styleClass } = require("../ui/message");
 
 const selectedItem = selection.items[0];
 const renditionSizes = [16, 32, 96, 120, 128, 152, 167, 180, 192, 196];
@@ -10,24 +10,26 @@ const exportRenditions = async () => {
   const selectedDir = await fs.getFolder();
   const destDir = await getDestDir(selectedDir);
   const renditions = await getRenditionOpts(destDir);
-  const messageEl = document.querySelector("#message");
 
   try {
     await application.createRenditions(renditions);
 
-    showMessage(messageEl, {
-      message: `${msg.opInfo.success} "${selectedDir.name}/${destDir.name}".`,
+    const msgOpts = {
+      message: msg.opInfo.success,
       styleClass: styleClass.success,
       withTimeout: true
-    });
+    };
+
+    return msgOpts;
   } catch (error) {
-    showMessage(messageEl, {
+    const msgOpts = {
       message: msg.opInfo.error,
       styleClass: styleClass.error,
       withTimeout: true
-    });
+    };
 
     console.log(error);
+    return msgOpts;
   }
 };
 

@@ -6,7 +6,7 @@
 
 1. ~User experiences consistent UI colors throughout~
 1. ~User can recognize the plugin by its icon~
-1. User can see export sizes in a 2-column layout
+1. ⭐︎ User can see export sizes in a 2-column layout
 
 ### Validation
 
@@ -22,7 +22,7 @@
 1. ~User gets a success or error message on export~
 1. ~User can escape from file picker flow without plugin errors~
 1. ~User doesn't need to dismiss success and error messages~
-1. User gets apple-touch-icons with an opaque background (if the background is originally transparent)
+1. ⭐︎ User gets apple-touch-icons with an opaque background (if the background is originally transparent)
 1. ? User can select/deselect sizes to export
 
 ### Markup Export
@@ -36,8 +36,14 @@
 
 1. UI is free of memory leaks
 1. Error logs can be retrieved from file system
-1. Messages are handled after all operations are complete
+1. ~Messages are handled after all operations are complete~
 
 ### Submission
 
 [Submission checklist](https://adobexdplatform.com/plugin-docs/distribution/submission-checklist.html)
+
+### Open source
+
+1. Developer can see license
+1. Editor config prevents issues with pull requests
+1. Developer can discover on xd-awesome

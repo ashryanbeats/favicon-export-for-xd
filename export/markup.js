@@ -1,4 +1,5 @@
 const clipboard = require("clipboard");
+const { msg } = require("../ui/message");
 
 // TODO: combine with const from renditions.js
 // const renditionSizes = {
@@ -52,6 +53,8 @@ const markup = `
 
 const exportMarkup = () => {
   clipboard.copyText(markup);
+
+  return { message: msg.opInfo.clipboard };
 };
 
 module.exports = {

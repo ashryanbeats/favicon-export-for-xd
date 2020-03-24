@@ -4,7 +4,7 @@ const msg = {
     selDim: "Please select a square rectangle or artboard."
   },
   opInfo: {
-    success: "Favicons saved in",
+    success: "Favicons saved.",
     clipboard: "HTML tags copied to clipboard.",
     error: "An error occurred. Please try again."
   }
@@ -17,14 +17,16 @@ const styleClass = {
   error: "error"
 };
 
-const resetMessage = element => {
+const resetMessage = () => {
+  const element = document.querySelector("#message");
   if (element.dataset.timeout === true) return;
 
   element.textContent = "";
   element.className = "hide";
 };
 
-const showMessage = (element, options) => {
+const showMessage = options => {
+  const element = document.querySelector("#message");
   element.textContent = options.message;
   element.className = `show ${options.styleClass}`;
 
