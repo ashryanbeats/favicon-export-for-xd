@@ -24,9 +24,9 @@ const attachUI = event => {
 const attachSizeList = () => {
   const sizeListDiv = panel.querySelector("#size-list");
 
-  renditionSizes.map(size => {
+  renditionSizes.map(platform => {
     const sizeItem = document.createElement("div");
-    sizeItem.textContent = `・${size}px`;
+    sizeItem.textContent = `・${platform.size}px (${platform.platformName})`;
     sizeItem.className = "size-item";
     sizeListDiv.appendChild(sizeItem);
   });

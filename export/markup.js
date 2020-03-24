@@ -1,16 +1,6 @@
 const clipboard = require("clipboard");
 const { msg } = require("../ui/message");
 
-// TODO: combine with const from renditions.js
-// const renditionSizes = {
-//   standard: {
-//     sizes: [16, 32, 96, 128, 192],
-//     markup: `<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">`
-//   },
-//   ios: [120, 152, 167, 180],
-//   android: [196]
-// };
-
 // TODO: Add Windows support
 // A browserconfig.xml file in the site's root directory
 // <?xml version="1.0" encoding="utf-8"?>
@@ -34,7 +24,7 @@ const { msg } = require("../ui/message");
 // <meta name="msapplication-config" content="/browserconfig.xml" />
 
 const markup = `
-<!-- Standard -->
+<!-- Web -->
 <link rel="icon" type="image/png" href="favicon-16.png" sizes="16x16">  
 <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">  
 <link rel="icon" type="image/png" href="favicon-96.png" sizes="96x96">  

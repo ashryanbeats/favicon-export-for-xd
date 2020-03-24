@@ -1,10 +1,20 @@
-const { selection } = require("scenegraph");
+const { selection, Color } = require("scenegraph");
 const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
 const { msg, styleClass } = require("../ui/message");
 
-const selectedItem = selection.items[0];
-const renditionSizes = [16, 32, 96, 120, 128, 152, 167, 180, 192, 196];
+const renditionSizes = [
+  { size: 16, platformName: "Web" },
+  { size: 32, platformName: "Web" },
+  { size: 96, platformName: "Web" },
+  { size: 128, platformName: "Web" },
+  { size: 192, platformName: "Web" },
+  { size: 120, platformName: "iOS" },
+  { size: 152, platformName: "iOS" },
+  { size: 167, platformName: "iOS" },
+  { size: 180, platformName: "iOS" },
+  { size: 196, platformName: "Android" }
+];
 
 const exportRenditions = async () => {
   const selectedDir = await fs.getFolder();
@@ -72,8 +82,8 @@ const createDestDirName = (faviconDirs, destDirSlug) => {
 };
 
 const getRenditionOpts = async destDir => {
-  const filePromises = renditionSizes.map(async size => {
-    const file = await destDir.createFile(`favicon-${size}.png`, {
+  const filePromises = renditionSizes.map(async platform => {
+    const file = await destDir.createFile(`favicon-${platform.size}.png`, {
       overwrite: true
     });
     return file;
@@ -82,12 +92,22 @@ const getRenditionOpts = async destDir => {
   const renditionFiles = await Promise.all(filePromises);
 
   const renditions = renditionFiles.map((file, i) => {
-    return {
+    const selectedItem = selection.items[0];
+
+    const options = {
       node: selectedItem,
       outputFile: file,
       type: application.RenditionType.PNG,
-      scale: renditionSizes[i] / selectedItem.width
+      scale: renditionSizes[i].size / selectedItem.width
     };
+
+    if (renditionSizes[i].platformName === "iOS") {
+      options.background = new Color("White");
+    } else {
+      options.background = selectedItem.fill;
+    }
+
+    return options;
   });
 
   return renditions;
