@@ -1,13 +1,14 @@
-const { markup } = require("./markup");
 const { handleExports } = require("../export/index");
 const { renditionSizes } = require("../export/renditions");
 const application = require("application");
+const fs = require("uxp").storage.localFileSystem;
 
 let panel;
 
-const attachUI = event => {
-  if (panel) return panel;
+const attachUI = async event => {
+  if (panel) return true;
 
+  const markup = await getMarkup();
   panel = document.createElement("div");
   panel.id = "panel";
   panel.innerHTML = markup;
@@ -18,7 +19,22 @@ const attachUI = event => {
     .addEventListener("submit", () => application.editDocument(handleExports));
 
   event.node.appendChild(panel);
-  return panel;
+  return true;
+};
+
+const getMarkup = async () => {
+  const pluginFolder = await fs.getPluginFolder();
+  const pluginFolderEntries = await pluginFolder.getEntries();
+
+  const uiFolder = pluginFolderEntries.filter(entry => entry.name === "ui")[0];
+  const uiFolderEntries = await uiFolder.getEntries();
+
+  const markupFile = uiFolderEntries.filter(
+    entry => entry.name === "markup.html"
+  )[0];
+  const markupFileContents = await markupFile.read();
+
+  return markupFileContents;
 };
 
 const attachExportLists = () => {

@@ -1,12 +1,15 @@
 const { attachUI } = require("./ui/index");
 const { validateSelection } = require("./ui/validate");
 
-function show(event) {
-  return attachUI(event);
+let uiMounted = false;
+
+async function show(event) {
+  uiMounted = await attachUI(event);
+  return await update();
 }
 
-function update() {
-  return validateSelection();
+async function update() {
+  if (uiMounted) return validateSelection();
 }
 
 module.exports = {

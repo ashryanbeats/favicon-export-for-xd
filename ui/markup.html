@@ -1,10 +1,9 @@
-const markup = `
 <style>
   .break {
     flex-wrap: wrap;
   }
   label.row > span {
-    color: #8E8E8E;
+    color: #8e8e8e;
     width: 20px;
     text-align: right;
     font-size: 9px;
@@ -23,20 +22,20 @@ const markup = `
     padding: 12px;
   }
   .info {
-    color: #00529B;
-    background-color: #BDE5F8;
+    color: #00529b;
+    background-color: #bde5f8;
   }
   .success {
-    color: #4F8A10;
-    background-color: #DFF2BF;
+    color: #4f8a10;
+    background-color: #dff2bf;
   }
   .warning {
-    color: #9F6000;
-    background-color: #FEEFB3;
+    color: #9f6000;
+    background-color: #feefb3;
   }
   .error {
-    color: #D8000C;
-    background-color: #FFD2D2;
+    color: #d8000c;
+    background-color: #ffd2d2;
   }
   .size-item {
     padding-left: 10px;
@@ -51,7 +50,10 @@ const markup = `
 </style>
 <form method="dialog">
   <div id="export-info">
-    <p><span class="bold">Exports icons</span> to a folder you choose and <span class="bold">copies HTML tags</span> to your clipboard.</p>
+    <p>
+      <span class="bold">Exports icons</span> to a folder you choose and
+      <span class="bold">copies HTML tags</span> to your clipboard.
+    </p>
     <h2>Export sizes</h2>
     <div id="size-list"></div>
   </div>
@@ -60,8 +62,3 @@ const markup = `
   </footer>
 </form>
 <div id="message" data-timeout="false"></div>
-`;
-
-module.exports = {
-  markup
-};
