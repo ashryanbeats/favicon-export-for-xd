@@ -6,7 +6,8 @@ const msg = {
   opInfo: {
     success: "Favicons saved.",
     clipboard: "HTML tags copied to clipboard.",
-    error: "An error occurred. Please try again."
+    error: "An error occurred. Please try again.",
+    folderPickerCancel: "No destination folder selected."
   }
 };
 

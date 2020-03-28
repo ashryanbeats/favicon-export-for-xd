@@ -20,6 +20,13 @@ const renditionSizes = {
 
 const exportRenditions = async () => {
   const selectedDir = await fs.getFolder();
+  if (!selectedDir)
+    return {
+      message: msg.opInfo.folderPickerCancel,
+      styleClass: styleClass.info,
+      withTimeout: true
+    };
+
   const destDir = await getDestDir(selectedDir);
   const filesWithDetails = await createFiles(destDir);
   const renditionOpts = await getRenditionOpts(filesWithDetails);
