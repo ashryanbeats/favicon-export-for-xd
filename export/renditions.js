@@ -30,6 +30,7 @@ const exportRenditions = async () => {
   const destDir = await getDestDir(selectedDir);
   const filesWithDetails = await createFiles(destDir);
   const renditionOpts = await getRenditionOpts(filesWithDetails);
+  console.log("");
 
   try {
     await application.createRenditions(renditionOpts);
@@ -37,7 +38,8 @@ const exportRenditions = async () => {
     const msgOpts = {
       message: msg.opInfo.success,
       styleClass: styleClass.success,
-      withTimeout: true
+      withTimeout: true,
+      filesWithDetails
     };
 
     return msgOpts;

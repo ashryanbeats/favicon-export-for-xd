@@ -1,5 +1,6 @@
 const clipboard = require("clipboard");
 const { msg } = require("../ui/message");
+const { renditionSizes } = require("./renditions");
 
 // TODO: Add Windows support
 // A browserconfig.xml file in the site's root directory
@@ -23,26 +24,50 @@ const { msg } = require("../ui/message");
 // <!— Windows 8.1 + IE11 and above —>
 // <meta name="msapplication-config" content="/browserconfig.xml" />
 
-const markup = `
-<!-- Web -->
-<link rel="icon" type="image/png" href="favicon-16.png" sizes="16x16">  
-<link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">  
-<link rel="icon" type="image/png" href="favicon-96.png" sizes="96x96">  
-<link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128">
-<link rel="icon" type="image/png" href="favicon-192.png" sizes="192x192">
+const exportMarkup = filesWithDetails => {
+  const generatedMarkup = filesWithDetails
+    .map((file, i) => {
+      const fileName = file.file.name;
+      const { platformName, size } = file.details;
+      const sizes = `${size}x${size}`;
+      const prevPlatformName = filesWithDetails[i - 1]
+        ? filesWithDetails[i - 1].details.platformName
+        : null;
 
-<!-- iOS -->
-<link rel="apple-touch-icon" href="favicon-120.png"> <!-- Older iPhones -->  
-<link rel="apple-touch-icon" sizes="152x152" href="favicon-152.png"> <!-- iPad Retina --> 
-<link rel="apple-touch-icon" sizes="167x167" href="favicon-167.png"> <!-- iPad Pro -->
-<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png"> <!-- iPhone 6 Plus -->
+      const comment = `\n<!-- ${platformName} -->\n`;
 
-<!-- Android -->
-<link rel="shortcut icon" sizes="196x196" href=“favicon-196.png">
-`;
+      const isFirst = () => platformName !== prevPlatformName;
 
-const exportMarkup = () => {
-  clipboard.copyText(markup);
+      const decorateWithComments = markup => {
+        return isFirst() ? comment + markup : markup;
+      };
+
+      let markup;
+      switch (platformName) {
+        case renditionSizes.web.platformName:
+          markup = `<link rel="icon" type="image/png" href="${fileName}" sizes="${sizes}">`;
+          return decorateWithComments(markup);
+          break;
+        case renditionSizes.ios.platformName:
+          markup = `<link rel="apple-touch-icon" href="${fileName}" sizes="${sizes}">`;
+          return decorateWithComments(markup);
+          break;
+        case renditionSizes.android.platformName:
+          markup = `<link rel="shortcut icon" href=“${fileName}" sizes="${sizes}">`;
+          return decorateWithComments(markup);
+          break;
+        default:
+          console.log(
+            `A new rendition platform (${platformName}) has been added but export markup is not yet being generated for it.`
+          );
+          break;
+      }
+    })
+    .join("\n");
+
+  console.log(generatedMarkup);
+
+  clipboard.copyText(generatedMarkup);
 
   return { message: msg.opInfo.clipboard };
 };

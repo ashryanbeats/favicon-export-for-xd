@@ -14,7 +14,7 @@ const handleExports = async () => {
     showMessage(renditionMsgOpts);
   } else if (renditionMsgOpts.message === msg.opInfo.success) {
     // Success
-    const markupResOpts = exportMarkup();
+    const markupResOpts = exportMarkup(renditionMsgOpts.filesWithDetails);
     renditionMsgOpts.message += ` ${markupResOpts.message}`;
     showMessage(renditionMsgOpts);
   }
