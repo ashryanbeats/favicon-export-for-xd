@@ -12,7 +12,7 @@ const attachUI = event => {
   panel.id = "panel";
   panel.innerHTML = markup;
 
-  attachSizeList();
+  attachExportLists();
   panel
     .querySelector("form")
     .addEventListener("submit", () => application.editDocument(handleExports));
@@ -21,14 +21,32 @@ const attachUI = event => {
   return panel;
 };
 
-const attachSizeList = () => {
-  const sizeListDiv = panel.querySelector("#size-list");
+const attachExportLists = () => {
+  Object.values(renditionSizes).map(platform => {
+    const platformDiv = attachContainer(platform);
+    attachSizeList(platform, platformDiv);
+  });
+};
 
-  renditionSizes.map(platform => {
+const attachContainer = platform => {
+  const sizeListDiv = panel.querySelector("#size-list");
+  const platformDiv = document.createElement("div");
+  const platformHeading = document.createElement("h3");
+  platformDiv.id = platform.platformName;
+  platformDiv.className = "platform";
+  platformHeading.textContent = platform.platformName;
+  platformDiv.appendChild(platformHeading);
+  sizeListDiv.appendChild(platformDiv);
+
+  return platformDiv;
+};
+
+const attachSizeList = (platform, platformDiv) => {
+  platform.sizes.map(size => {
     const sizeItem = document.createElement("div");
-    sizeItem.textContent = `・${platform.size}px (${platform.platformName})`;
+    sizeItem.textContent = `・${size}px`;
     sizeItem.className = "size-item";
-    sizeListDiv.appendChild(sizeItem);
+    platformDiv.appendChild(sizeItem);
   });
 };
 

@@ -3,26 +3,29 @@ const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
 const { msg, styleClass } = require("../ui/message");
 
-const renditionSizes = [
-  { size: 16, platformName: "Web" },
-  { size: 32, platformName: "Web" },
-  { size: 96, platformName: "Web" },
-  { size: 128, platformName: "Web" },
-  { size: 192, platformName: "Web" },
-  { size: 120, platformName: "iOS" },
-  { size: 152, platformName: "iOS" },
-  { size: 167, platformName: "iOS" },
-  { size: 180, platformName: "iOS" },
-  { size: 196, platformName: "Android" }
-];
+const renditionSizes = {
+  web: {
+    platformName: "Web",
+    sizes: [16, 32, 96, 128, 192]
+  },
+  ios: {
+    platformName: "iOS",
+    sizes: [120, 152, 167, 180]
+  },
+  android: {
+    platformName: "Android",
+    sizes: [196]
+  }
+};
 
 const exportRenditions = async () => {
   const selectedDir = await fs.getFolder();
   const destDir = await getDestDir(selectedDir);
-  const renditions = await getRenditionOpts(destDir);
+  const filesWithDetails = await createFiles(destDir);
+  const renditionOpts = await getRenditionOpts(filesWithDetails);
 
   try {
-    await application.createRenditions(renditions);
+    await application.createRenditions(renditionOpts);
 
     const msgOpts = {
       message: msg.opInfo.success,
@@ -81,27 +84,52 @@ const createDestDirName = (faviconDirs, destDirSlug) => {
   return destDirName;
 };
 
-const getRenditionOpts = async destDir => {
-  const filePromises = renditionSizes.map(async platform => {
-    const file = await destDir.createFile(`favicon-${platform.size}.png`, {
-      overwrite: true
-    });
+const createFiles = async destDir => {
+  const platforms = Object.values(renditionSizes);
+
+  const filesToCreate = platforms
+    .map(platform => {
+      return platform.sizes.map(size => {
+        return {
+          platformName: platform.platformName,
+          size
+        };
+      });
+    })
+    // The reduce call is equivalent to Array.flat(), which isn't available in UXP yet.
+    .reduce((acc, val) => {
+      return acc.concat(val);
+    }, []);
+
+  const filePromises = filesToCreate.map(async fileDetails => {
+    const { platformName, size } = fileDetails;
+    const file = await destDir.createFile(
+      `favicon-${platformName}-${size}.png`,
+      {
+        overwrite: true
+      }
+    );
     return file;
   });
-
   const renditionFiles = await Promise.all(filePromises);
 
-  const renditions = renditionFiles.map((file, i) => {
+  return renditionFiles.map((file, i) => {
+    return { file, details: filesToCreate[i] };
+  });
+};
+
+const getRenditionOpts = async filesWithDetails => {
+  const renditionOpts = filesWithDetails.map(file => {
     const selectedItem = selection.items[0];
 
     const options = {
       node: selectedItem,
-      outputFile: file,
+      outputFile: file.file,
       type: application.RenditionType.PNG,
-      scale: renditionSizes[i].size / selectedItem.width
+      scale: file.details.size / selectedItem.width
     };
 
-    if (renditionSizes[i].platformName === "iOS") {
+    if (file.details.platformName === renditionSizes.ios.platformName) {
       options.background = new Color("White");
     } else {
       options.background = selectedItem.fill;
@@ -110,7 +138,7 @@ const getRenditionOpts = async destDir => {
     return options;
   });
 
-  return renditions;
+  return renditionOpts;
 };
 
 module.exports = {

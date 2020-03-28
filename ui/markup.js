@@ -45,6 +45,9 @@ const markup = `
   .bold {
     font-weight: bold;
   }
+  .platform {
+    margin-top: 15px;
+  }
 </style>
 <form method="dialog">
   <div id="export-info">
