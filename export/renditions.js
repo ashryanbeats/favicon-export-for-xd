@@ -30,7 +30,6 @@ const exportRenditions = async () => {
   const destDir = await getDestDir(selectedDir);
   const filesWithDetails = await createFiles(destDir);
   const renditionOpts = await getRenditionOpts(filesWithDetails);
-  console.log("");
 
   try {
     await application.createRenditions(renditionOpts);

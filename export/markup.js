@@ -65,8 +65,6 @@ const exportMarkup = filesWithDetails => {
     })
     .join("\n");
 
-  console.log(generatedMarkup);
-
   clipboard.copyText(generatedMarkup);
 
   return { message: msg.opInfo.clipboard };

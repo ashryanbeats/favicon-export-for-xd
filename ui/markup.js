@@ -46,12 +46,12 @@ const markup = `
     font-weight: bold;
   }
   .platform {
-    margin-top: 15px;
+    margin-top: 12px;
   }
 </style>
 <form method="dialog">
   <div id="export-info">
-    <p>Favicon Export <span class="bold">exports icons</span> to a folder you choose and <span class="bold">copies HTML tags</span> to your clipboard for use in your code project.</p>
+    <p><span class="bold">Exports icons</span> to a folder you choose and <span class="bold">copies HTML tags</span> to your clipboard.</p>
     <h2>Export sizes</h2>
     <div id="size-list"></div>
   </div>

@@ -24,6 +24,7 @@
 1. ~User doesn't need to dismiss success and error messages~
 1. ~User gets apple-touch-icons with an opaque background (if the background is originally transparent)~
 1. ? User can select/deselect sizes to export
+1. ? User can set background color for apple-touch-icons
 
 ### Markup Export
 
@@ -34,7 +35,7 @@
 
 ### Dev
 
-1. UI is free of memory leaks
+1. ~UI is free of memory leaks~
 1. Error logs can be retrieved from file system
 1. ~Messages are handled after all operations are complete~
 1. ⭐︎ Validate is moved to own dir with index.js and validate.js (index handles showMessage calls)
