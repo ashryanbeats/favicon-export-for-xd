@@ -19,7 +19,7 @@ const isValidSelection = () => {
   if (!selectionExists())
     return showMessage({
       message: msg.validate.selType,
-      styleClass: styleClass.warning
+      styleClass: styleClass.info
     });
 
   const item = selection.items[0];
@@ -28,14 +28,14 @@ const isValidSelection = () => {
   if (!isCorrectType(item))
     return showMessage({
       message: msg.validate.selType,
-      styleClass: styleClass.warning
+      styleClass: styleClass.info
     });
 
   // is square?
   if (!isSquare(item))
     return showMessage({
       message: msg.validate.selDim,
-      styleClass: styleClass.warning
+      styleClass: styleClass.info
     });
 
   return true;
