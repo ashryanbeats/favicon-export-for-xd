@@ -6,10 +6,7 @@ const validateSelection = () => {
   const okButton = panel.querySelector("#ok");
   const select = document.querySelector("#color-select");
 
-  if (!isValidSelection()) {
-    okButton.setAttribute("disabled", "");
-    select.setAttribute("disabled", "");
-  } else {
+  if (isValidSelection()) {
     okButton.removeAttribute("disabled");
 
     if (selectionHasBackground()) {
@@ -17,6 +14,9 @@ const validateSelection = () => {
     } else {
       select.removeAttribute("disabled");
     }
+  } else {
+    okButton.setAttribute("disabled", "");
+    select.setAttribute("disabled", "");
   }
 };
 
