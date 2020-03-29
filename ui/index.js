@@ -1,6 +1,6 @@
 const { handleExports } = require("../export/index");
 const { renditionSizes } = require("../export/renditions");
-const { getColorList } = require("../color/index");
+const { getColorList, getColorDetails } = require("../color/index");
 const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
 
@@ -76,15 +76,11 @@ const attachColorList = () => {
 
   const optionTags = colorList
     .map(colorAsset => {
-      const selected = colorAsset.default ? "selected" : "";
-      const value = colorAsset.color ? colorAsset.color.toHex() : "none";
-      const displayStr = colorAsset.name
-        ? colorAsset.name
-        : colorAsset.color.toHex();
+      const { selected, value, displayStr, source } = getColorDetails(
+        colorAsset
+      );
 
-      const source = colorAsset.extra ? "" : "Asset: ";
-
-      return `<option ${selected} value="${value}">${source}${displayStr}</option>`;
+      return `<option ${selected} value='${value}'>${source}${displayStr}</option>`;
     })
     .join("");
 

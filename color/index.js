@@ -23,7 +23,7 @@ const getColorList = () => {
     },
     {
       name: "Transparent",
-      color: null,
+      color: new Color("rgba(255, 255, 255, 0"),
       extra: true
     }
     // {
@@ -41,10 +41,36 @@ const getSelectedColor = () => {
   const selectedItem = select.selectedOptions[0];
   const selectedValue = selectedItem.value;
 
-  return new Color(selectedValue);
+  const color = parseStringifiedRgbaColor(selectedValue);
+
+  return color;
+};
+
+const getStringifiedRgbaColor = colorAsset => {
+  const rgbaColor = colorAsset.color.toRgba();
+  return JSON.stringify(rgbaColor);
+};
+
+const parseStringifiedRgbaColor = string => {
+  const parsedString = JSON.parse(string);
+  const color = new Color(parsedString);
+  return color;
+};
+
+const getColorDetails = colorAsset => {
+  const selected = colorAsset.default ? "selected" : "";
+  const value = colorAsset.color ? getStringifiedRgbaColor(colorAsset) : "none";
+  const displayStr = colorAsset.name
+    ? colorAsset.name
+    : colorAsset.color.toHex();
+
+  const source = colorAsset.extra ? "" : "Asset: ";
+
+  return { selected, value, displayStr, source };
 };
 
 module.exports = {
   getColorList,
-  getSelectedColor
+  getSelectedColor,
+  getColorDetails
 };
