@@ -3,6 +3,7 @@ const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
 const { msg, styleClass } = require("../ui/message");
 const { getSelectedColor } = require("../color/index");
+const { selectionHasBackground } = require("../ui/validate");
 
 const renditionSizes = {
   web: {
@@ -138,7 +139,11 @@ const getRenditionOpts = async filesWithDetails => {
       scale: file.details.size / selectedItem.width
     };
 
-    if (file.details.platformName === renditionSizes.ios.platformName) {
+    const isOS = () => {
+      return file.details.platformName === renditionSizes.ios.platformName;
+    };
+
+    if (isOS() && !selectionHasBackground()) {
       options.background = getSelectedColor();
     } else {
       options.background = selectedItem.fill;
