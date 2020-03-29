@@ -47,9 +47,11 @@ const attachExportLists = () => {
 const attachContainer = platform => {
   const sizeListDiv = panel.querySelector("#size-list");
   const platformDiv = document.createElement("div");
-  const platformHeading = document.createElement("h3");
+  const platformHeading = document.createElement("h2");
+
+  sizeListDiv.className = "container";
   platformDiv.id = platform.platformName;
-  platformDiv.className = "platform";
+  platformDiv.className = "col platform";
   platformHeading.textContent = platform.platformName;
   platformDiv.appendChild(platformHeading);
   sizeListDiv.appendChild(platformDiv);

@@ -1,26 +1,39 @@
 <style>
-  .break {
+  h1 {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .container {
+    display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
   }
-  label.row > span {
-    color: #8e8e8e;
-    width: 20px;
-    text-align: right;
-    font-size: 9px;
+
+  .platform {
+    width: 50%;
+    margin-top: 10px;
   }
-  label.row input {
-    flex: 1 1 auto;
+
+  .size-item {
+    padding-left: 10px;
+    padding-top: 5px;
   }
+
+  #message {
+    margin: 10px 0px;
+    padding: 12px;
+    border-radius: 3px;
+  }
+
   .show {
     display: block;
   }
   .hide {
     display: none;
   }
-  #message {
-    margin: 10px 0px;
-    padding: 12px;
-  }
+
   .info {
     color: #00529b;
     background-color: #bde5f8;
@@ -37,15 +50,8 @@
     color: #d8000c;
     background-color: #ffd2d2;
   }
-  .size-item {
-    padding-left: 10px;
-    padding-top: 5px;
-  }
   .bold {
     font-weight: bold;
-  }
-  .platform {
-    margin-top: 12px;
   }
 </style>
 <form method="dialog">
@@ -54,7 +60,7 @@
       <span class="bold">Exports icons</span> to a folder you choose and
       <span class="bold">copies HTML tags</span> to your clipboard.
     </p>
-    <h2>Export sizes</h2>
+    <h1>Export sizes</h1>
     <div id="size-list"></div>
   </div>
   <footer>
