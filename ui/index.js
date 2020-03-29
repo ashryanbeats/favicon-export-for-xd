@@ -1,5 +1,6 @@
 const { handleExports } = require("../export/index");
 const { renditionSizes } = require("../export/renditions");
+const { getColorList } = require("../color/index");
 const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
 
@@ -14,6 +15,7 @@ const attachUI = async event => {
   panel.innerHTML = markup;
 
   attachExportLists();
+  attachColorList();
   panel
     .querySelector("form")
     .addEventListener("submit", () => application.editDocument(handleExports));
@@ -66,6 +68,27 @@ const attachSizeList = (platform, platformDiv) => {
     sizeItem.className = "size-item";
     platformDiv.appendChild(sizeItem);
   });
+};
+
+const attachColorList = () => {
+  const select = panel.querySelector("#color-select");
+  const colorList = getColorList();
+
+  const optionTags = colorList
+    .map(colorAsset => {
+      const selected = colorAsset.default ? "selected" : "";
+      const value = colorAsset.color ? colorAsset.color.toHex() : "none";
+      const displayStr = colorAsset.name
+        ? colorAsset.name
+        : colorAsset.color.toHex();
+
+      const source = colorAsset.extra ? "" : "Asset: ";
+
+      return `<option ${selected} value="${value}">${source}${displayStr}</option>`;
+    })
+    .join("");
+
+  select.innerHTML = optionTags;
 };
 
 module.exports = {

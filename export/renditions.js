@@ -1,7 +1,8 @@
-const { selection, Color } = require("scenegraph");
+const { selection } = require("scenegraph");
 const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
 const { msg, styleClass } = require("../ui/message");
+const { getSelectedColor } = require("../color/index");
 
 const renditionSizes = {
   web: {
@@ -138,7 +139,7 @@ const getRenditionOpts = async filesWithDetails => {
     };
 
     if (file.details.platformName === renditionSizes.ios.platformName) {
-      options.background = new Color("White");
+      options.background = getSelectedColor();
     } else {
       options.background = selectedItem.fill;
     }
