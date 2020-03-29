@@ -18,7 +18,7 @@ const isValidSelection = () => {
   // selection exists?
   if (!selectionExists())
     return showMessage({
-      message: msg.validate.selType,
+      message: msg.validate.selDim,
       styleClass: styleClass.info
     });
 
@@ -27,7 +27,7 @@ const isValidSelection = () => {
   // is correct type?
   if (!isCorrectType(item))
     return showMessage({
-      message: msg.validate.selType,
+      message: msg.validate.selDim,
       styleClass: styleClass.info
     });
 

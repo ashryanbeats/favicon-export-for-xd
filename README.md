@@ -6,7 +6,7 @@
 
 1. ~User experiences consistent UI colors throughout~
 1. ~User can recognize the plugin by its icon~
-1. ⭐︎ User can see export sizes in a 2-column layout
+1. ~User can see export sizes in a 2-column layout~
 
 ### Validation
 
@@ -38,7 +38,7 @@
 1. ~UI is free of memory leaks~
 1. Error logs can be retrieved from file system
 1. ~Messages are handled after all operations are complete~
-1. ⭐︎ Validate is moved to own dir with index.js and validate.js (index handles showMessage calls)
+1. Validate is moved to own dir with index.js and validate.js (index handles showMessage calls)
 
 ### Submission
 
