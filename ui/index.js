@@ -15,7 +15,6 @@ const attachUI = async event => {
   panel.innerHTML = markup;
 
   attachExportLists();
-  attachColorList();
   panel
     .querySelector("form")
     .addEventListener("submit", () => application.editDocument(handleExports));
@@ -88,5 +87,6 @@ const attachColorList = () => {
 };
 
 module.exports = {
-  attachUI
+  attachUI,
+  attachColorList
 };

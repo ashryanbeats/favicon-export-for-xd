@@ -62,7 +62,7 @@ const getColorDetails = colorAsset => {
   const value = colorAsset.color ? getStringifiedRgbaColor(colorAsset) : "none";
   const displayStr = colorAsset.name
     ? colorAsset.name
-    : colorAsset.color.toHex();
+    : colorAsset.color.toHex().toUpperCase();
 
   const source = colorAsset.extra ? "" : "Asset: ";
 
