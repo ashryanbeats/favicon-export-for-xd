@@ -5,18 +5,23 @@ const validateSelection = () => {
   const panel = document.querySelector("#panel");
   const okButton = panel.querySelector("#ok");
   const select = document.querySelector("#color-select");
+  const backgroundColorDiv = document.querySelector("#background-color");
+  console.log(backgroundColorDiv.innerHTML);
 
   if (isValidSelection()) {
     okButton.removeAttribute("disabled");
 
     if (selectionHasBackground()) {
       select.setAttribute("disabled", "");
+      backgroundColorDiv.className = "hide";
     } else {
       select.removeAttribute("disabled");
+      backgroundColorDiv.className = "show";
     }
   } else {
     okButton.setAttribute("disabled", "");
     select.setAttribute("disabled", "");
+    backgroundColorDiv.className = "hide";
   }
 };
 

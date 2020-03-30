@@ -13,7 +13,7 @@
 
   .platform {
     width: 50%;
-    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .size-item {
@@ -75,15 +75,21 @@
 
 <form method="dialog">
   <div id="export-info">
-    <h1>Export sizes</h1>
-    <p>Icons will be exported at these sizes.</p>
-    <div id="size-list"></div>
-    <h1>iOS background</h1>
-    <p>Only applies if your icon has a transparent background.</p>
-    <label id="color-input">
-      <span id="color-preview">■</span>
-      <select id="color-select"> </select>
-    </label>
+    <div>
+      <h1>Export sizes</h1>
+      <p>Icons will be exported at these sizes.</p>
+      <div id="size-list"></div>
+    </div>
+    <div id="background-color">
+      <h1>Background color</h1>
+      <p>
+        Only applies for iOS sizes if your icon has a transparent background.
+      </p>
+      <label id="color-input">
+        <span id="color-preview">■</span>
+        <select id="color-select"> </select>
+      </label>
+    </div>
   </div>
   <footer>
     <button id="ok" type="submit" uxp-variant="cta">Export Favicons</button>
