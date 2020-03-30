@@ -45,15 +45,15 @@ const exportMarkup = filesWithDetails => {
       let markup;
       switch (platformName) {
         case renditionSizes.web.platformName:
-          markup = `<link rel="icon" type="image/png" href="${fileName}" sizes="${sizes}">`;
+          markup = `<link rel="icon" type="image/png" href="${fileName}" sizes="${sizes}" />`;
           return decorateWithComments(markup);
           break;
         case renditionSizes.ios.platformName:
-          markup = `<link rel="apple-touch-icon" href="${fileName}" sizes="${sizes}">`;
+          markup = `<link rel="apple-touch-icon" href="${fileName}" sizes="${sizes}" />`;
           return decorateWithComments(markup);
           break;
         case renditionSizes.android.platformName:
-          markup = `<link rel="shortcut icon" href=“${fileName}" sizes="${sizes}">`;
+          markup = `<link rel="shortcut icon" href=“${fileName}" sizes="${sizes}" />`;
           return decorateWithComments(markup);
           break;
         default:

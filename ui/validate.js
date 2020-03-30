@@ -6,7 +6,6 @@ const validateSelection = () => {
   const okButton = panel.querySelector("#ok");
   const select = document.querySelector("#color-select");
   const backgroundColorDiv = document.querySelector("#background-color");
-  console.log(backgroundColorDiv.innerHTML);
 
   if (isValidSelection()) {
     okButton.removeAttribute("disabled");
