@@ -1,4 +1,4 @@
-const { selection, Rectangle, Artboard } = require("scenegraph");
+const { selection, Artboard } = require("scenegraph");
 const { msg, styleClass, showMessage, resetMessage } = require("./message");
 
 const validateSelection = () => {
@@ -59,7 +59,7 @@ const selectionExists = () => {
 };
 
 const isCorrectType = item => {
-  const supportedTypes = [Rectangle, Artboard];
+  const supportedTypes = [Artboard];
   const typeValidations = supportedTypes.map(nodeType => {
     return item instanceof nodeType;
   });

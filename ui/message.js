@@ -1,7 +1,7 @@
 const msg = {
   validate: {
-    selType: "Please select a rectangle or artboard.",
-    selDim: "Please select a square rectangle or artboard."
+    selType: "Please select an artboard.",
+    selDim: "Please select a square artboard."
   },
   opInfo: {
     success: "Favicons saved.",
