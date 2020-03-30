@@ -1,6 +1,10 @@
 const { handleExports } = require("../export/index");
 const { renditionSizes } = require("../export/renditions");
-const { getColorList, getColorDetails } = require("../color/index");
+const {
+  getColorList,
+  getColorDetails,
+  setColorPreview
+} = require("../color/index");
 const application = require("application");
 const fs = require("uxp").storage.localFileSystem;
 
@@ -84,6 +88,8 @@ const attachColorList = () => {
     .join("");
 
   select.innerHTML = optionTags;
+  select.addEventListener("change", setColorPreview);
+  setColorPreview();
 };
 
 module.exports = {

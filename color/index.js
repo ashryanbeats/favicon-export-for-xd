@@ -69,8 +69,16 @@ const getColorDetails = colorAsset => {
   return { selected, value, displayStr, source };
 };
 
+const setColorPreview = _e => {
+  const colorPreview = document.querySelector("#color-preview");
+  const color = getSelectedColor();
+
+  colorPreview.style.color = `rgba(${color.r}, ${color.g}, ${color.b}, 1)`;
+};
+
 module.exports = {
   getColorList,
   getSelectedColor,
-  getColorDetails
+  getColorDetails,
+  setColorPreview
 };

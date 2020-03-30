@@ -21,8 +21,22 @@
     padding-top: 5px;
   }
 
-  #color-select {
+  #color-input {
     width: 100%;
+  }
+  #color-preview {
+    font-size: 20px;
+    margin-left: 4px;
+    margin-right: 4px;
+    padding-left: 2px;
+    padding-right: 1px;
+    background-color: rgb(228, 228, 228);
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 4px;
+  }
+  #color-select {
+    width: 80%;
+    margin: 0;
   }
 
   #message {
@@ -62,9 +76,12 @@
 <form method="dialog">
   <div id="export-info">
     <h1>Export sizes</h1>
+    <p>Icons will be exported at these sizes.</p>
     <div id="size-list"></div>
     <h1>iOS background</h1>
-    <label>
+    <p>Only applies if your icon has a transparent background.</p>
+    <label id="color-input">
+      <span id="color-preview">■</span>
       <select id="color-select"> </select>
     </label>
   </div>
