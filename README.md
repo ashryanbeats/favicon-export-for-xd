@@ -6,13 +6,18 @@ _Export icons for your website._
 
 Favicon Export will help you generate many of the icons you need for websites. This plugin exports icons to a folder you choose, then copies HTML tags to your clipboard.
 
-A number of icons sizes are supported for web, iOS, and Android. Note that for icons with transparent backgrounds, the iOS icons will be exported with a white background in order to avoid the iOS default, which is black.
+A number of icons sizes are supported for web, iOS, and Android.
+
+Note:
+
+- For icons with transparent backgrounds, you will be able to choose a background color for the iOS icons.
+- Currently exports PNGs only.
 
 ### Lanugages supported
 
 - English
 
-## Need help? Have a request?
+## Need help? Have a request? Want more icon sizes?
 
 Submit an issue here:
 
