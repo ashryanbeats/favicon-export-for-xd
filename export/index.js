@@ -9,13 +9,13 @@ const handleExports = async () => {
   if (renditionMsgOpts.message === msg.opInfo.folderPickerCancel) {
     // Cancel
     return;
-  } else if (renditionMsgOpts.message === msg.opInfo.error) {
-    // Error
-    showMessage(renditionMsgOpts);
   } else if (renditionMsgOpts.message === msg.opInfo.success) {
     // Success
     const markupResOpts = exportMarkup(renditionMsgOpts.filesWithDetails);
     renditionMsgOpts.message += ` ${markupResOpts.message}`;
+    showMessage(renditionMsgOpts);
+  } else {
+    // Errors
     showMessage(renditionMsgOpts);
   }
 };

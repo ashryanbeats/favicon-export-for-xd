@@ -29,7 +29,22 @@ const exportRenditions = async () => {
       withTimeout: true
     };
 
-  const destDir = await getDestDir(selectedDir);
+  const entries = await getEntries(selectedDir);
+  if (!entries)
+    return {
+      message: msg.opInfo.errorDirRead,
+      styleClass: styleClass.error,
+      withTimeout: true
+    };
+
+  const destDir = await getDestDir(selectedDir, entries);
+  if (!destDir)
+    return {
+      message: msg.opInfo.errorDirCreate,
+      styleClass: styleClass.error,
+      withTimeout: true
+    };
+
   const filesWithDetails = await createFiles(destDir);
   const renditionOpts = await getRenditionOpts(filesWithDetails);
 
@@ -56,18 +71,30 @@ const exportRenditions = async () => {
   }
 };
 
-const getDestDir = async selectedDir => {
+const getEntries = async selectedDir => {
+  try {
+    const entries = await selectedDir.getEntries();
+    return entries;
+  } catch (error) {
+    return null;
+  }
+};
+
+const getDestDir = async (selectedDir, entries) => {
   const destDirSlug = "Favicons";
 
-  const entries = await selectedDir.getEntries();
   const faviconDirs = entries
     .filter(entry => entry.isFolder && entry.name.startsWith(destDirSlug))
     .map(entry => entry.name);
 
   const destDirName = createDestDirName(faviconDirs, destDirSlug);
-  const destDir = await selectedDir.createFolder(destDirName);
 
-  return destDir;
+  try {
+    const destDir = await selectedDir.createFolder(destDirName);
+    return destDir;
+  } catch (error) {
+    return null;
+  }
 };
 
 const createDestDirName = (faviconDirs, destDirSlug) => {

@@ -7,6 +7,8 @@ const msg = {
     success: "Favicons saved.",
     clipboard: "HTML tags copied to clipboard.",
     error: "An error occurred. Please try again.",
+    errorDirRead: "Unable to read folder. Please choose another folder.",
+    errorDirCreate: "Unable to create destination folder. Please try again.",
     folderPickerCancel: "No destination folder selected."
   }
 };
